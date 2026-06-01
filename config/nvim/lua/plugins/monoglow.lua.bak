@@ -1,0 +1,20 @@
+return {
+  'wnkz/monoglow.nvim',
+  config = function()
+    require("monoglow").setup({
+
+      on_highlights = function(hl, colors)
+        local no_bold   = { bold = false }
+        hl["Keyword"]   = no_bold
+        hl["Statement"] = no_bold
+        hl["Function"]  = no_bold
+        hl["Type"]      = no_bold
+
+        hl["@keyword"]  = no_bold
+        hl["@function"] = no_bold
+        hl["@type"]     = no_bold
+        hl["@variable"] = no_bold
+      end
+    })
+  end
+}

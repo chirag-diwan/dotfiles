@@ -1,0 +1,60 @@
+--require("tokyonight").setup({
+--  on_colors = function(colors)
+--    colors.bg = custom.none
+--    colors.bg_dark = custom.none
+--    colors.bg_float = custom.none
+--    colors.bg_sidebar = custom.none
+--    colors.bg_statusline = custom.none
+--    colors.bg_popup = custom.none
+--  end,
+--})
+
+--vim.g.gruvbox_material_background = 'hard'
+--vim.opt.background = "dark"
+--vim.cmd.colorscheme("lackluster-hack") -- my favorite
+--vim.cmd.colorscheme("lackluster-mint")
+vim.cmd.colorscheme("betterchrome")
+
+--vim.cmd([[
+--highlight Normal guibg=#000000
+--highlight NonText guibg=#000000
+--highlight LineNr guibg=#000000
+--highlight CursorLine guibg=#000000
+--highlight StatusLine guibg=#000000
+--highlight VertSplit guibg=#000000
+--highlight SignColumn guibg=#000000
+--]])
+
+----- 3. Syntax Highlighting (Mapped to Oxocarbon)
+---set(0, "Comment", { fg = oxo.gray, italic = true })
+---set(0, "String", { fg = oxo.green })
+---set(0, "Character", { fg = oxo.green })
+---set(0, "Number", { fg = oxo.pink })
+---set(0, "Boolean", { fg = oxo.pink })
+---set(0, "Float", { fg = oxo.pink })
+---set(0, "Identifier", { fg = oxo.text })
+---set(0, "Function", { fg = oxo.blue })
+---set(0, "Statement", { fg = oxo.purple })
+---set(0, "Conditional", { fg = oxo.purple })
+---set(0, "Repeat", { fg = oxo.purple })
+---set(0, "Label", { fg = oxo.purple })
+---set(0, "Operator", { fg = oxo.purple })
+---set(0, "Keyword", { fg = oxo.purple })
+---set(0, "Exception", { fg = oxo.purple })
+---set(0, "PreProc", { fg = oxo.pink })
+---set(0, "Type", { fg = oxo.cyan })
+---set(0, "Special", { fg = oxo.cyan })
+---
+----- 4. UI Elements (Using Oxocarbon accents)
+---set(0, "DiagnosticError", { fg = oxo.pink })
+---set(0, "DiagnosticWarn", { fg = oxo.purple })
+---set(0, "DiagnosticInfo", { fg = oxo.blue })
+---set(0, "DiagnosticHint", { fg = oxo.cyan })
+---
+-- Optional: Keep Moonfly's visual selection or use Oxocarbon's gray?
+-- Using Oxocarbon gray for visual selection provides better consistency with the FG
+---set(0, "Visual", { bg = "#262626" })
+---
+---
+---
+---

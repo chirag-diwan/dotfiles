@@ -1,0 +1,1 @@
+require("betterchrome").setup({})

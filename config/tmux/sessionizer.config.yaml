@@ -1,0 +1,9 @@
+search_paths:
+  - /home/chirag/Projects
+  - /home/chirag/.config
+
+exclude_dirs:
+  - node_modules
+  - .git
+  - target
+  - build
