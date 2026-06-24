@@ -160,3 +160,4 @@ bar {
 bindsym Print exec scrot ~/Pictures/Screenshots/screenshot_%Y-%m-%d-%H%M%S.png
 bindsym XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+bindsym $mod+p exec --no-startup-id scrot -s -o - | xclip -selection clipboard -t image/png

@@ -3,9 +3,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.relativenumber = true
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 250
+vim.opt.updatetime = 200
+vim.opt.timeoutlen = 200
 vim.o.laststatus = 0
 vim.opt.hlsearch = false
 vim.opt.mouse = ""
@@ -33,8 +32,6 @@ cmp.setup({
 vim.api.nvim_create_user_command("Search", function(opts)
   vim.cmd('vimgrep /' .. opts.args .. '/j **/*')
 end, { nargs = 1 })
-
-
 
 
 vim.lsp.config.gopls = {
@@ -71,50 +68,43 @@ vim.lsp.config.lua_ls = {
         end,
       })
     end
-  end
+  end,
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 }
 
----vim.lsp.config.ts_ls = {
----  on_attach = function(client, bufnr)
----    if client.server_capabilities.documentFormattingProvider then
----      vim.api.nvim_create_autocmd("BufWritePre", {
----        buffer = bufnr,
----        callback = function()
----          vim.lsp.buf.format({ bufnr = bufnr })
----        end,
----      })
----    end
----  end,
----  settings = {
----    javascript = {
----      inlayHints = {
----        includeInlayParameterNameHints = "all", -- 'none', 'literals', or 'all'
----        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
----        includeInlayFunctionLikeReturnTypeHints = true,
----        includeInlayFunctionParameterTypeHints = true,
----        includeInlayPropertyDeclarationTypeHints = true,
----        includeInlayVariableTypeHints = true,
----        includeInlayEnumMemberValueHints = true,
----      },
----    },
----    typescript = {
----      inlayHints = {
----        includeInlayParameterNameHints = "all",
----        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
----        includeInlayFunctionLikeReturnTypeHints = true,
----        includeInlayFunctionParameterTypeHints = true,
----        includeInlayPropertyDeclarationTypeHints = true,
----        includeInlayVariableTypeHints = true,
----        includeInlayEnumMemberValueHints = true,
----      },
----    }
----  },
----
----  inlay_hints = {
----    enabled = true,
----  }
----}
----
+
+vim.lsp.config.ts_ls = {
+  cmd = { "typescript-language-server", "--stdio" },
+  on_attach = function(client, bufnr)
+    -- enable formatting if supported
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    end
+  end,
+}
+
+
 vim.lsp.config.pylsp = {
   on_attach = function(client, bufnr)
     ---    if client.server_capabilities.documentFormattingProvider then
@@ -125,19 +115,6 @@ vim.lsp.config.pylsp = {
     ---        end,
     ---      })
     ---    end
-  end
-}
-
-vim.lsp.config.rust_analyzer = {
-  on_attach = function(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
-        end,
-      })
-    end
   end
 }
 
@@ -156,7 +133,7 @@ vim.lsp.config.bashls = {
 
 
 
-vim.lsp.config.pyls = {
+vim.lsp.config.pylsp = {
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -181,6 +158,7 @@ vim.lsp.config.html = {
     end
   end
 }
+
 vim.lsp.config.cssls = {
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
@@ -201,5 +179,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end
 })
-
-require("LinePin").setup({})

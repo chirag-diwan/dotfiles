@@ -1,5 +1,8 @@
 return {
   "chirag-diwan/FSwitch.nvim",
+  dependencies = {
+    "chirag-diwan/Neovim-Lua-Utils",
+  },
   config = function()
     require("FSwitch").setup(
       {
