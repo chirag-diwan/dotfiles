@@ -1,16 +1,27 @@
 #!/usr/bin/env bash
-dir=$(find ~/ -maxdepth 2 -print | grep -E "Learn|Projects" | fzf)
 
+dir=$(find ~/ \
+  -maxdepth 3 \
+  -path "*/node_modules" -prune -o \
+  -path "*/.git" -prune -o \
+  -print | grep -E "Learn|Projects|leetcode" | fzf)
 
 [ -z "$dir" ] && exit
 
-session="${dir//./_}"
+# resolve working directory properly
+if [ -d "$dir" ]; then
+  workdir="$dir"
+  nvim_target="."
+else
+  workdir="$(dirname "$dir")"
+  nvim_target="$(basename "$dir")"
+fi
+
+session="${workdir//./_}"
 
 if ! tmux has-session -t "$session" 2>/dev/null; then
-  cd "$dir"
-  tmux new-session -d -s "$session" -c "$dir"
-  tmux send-keys -t "$session":1 'nvim .' C-m
-  tmux select-window -t :1
+  tmux new-session -d -s "$session" -c "$workdir"
+  tmux send-keys -t "$session:1" "nvim $nvim_target" C-m
 fi
 
 if [ -n "$TMUX" ]; then
@@ -18,4 +29,3 @@ if [ -n "$TMUX" ]; then
 else
   tmux attach -t "$session"
 fi
-
