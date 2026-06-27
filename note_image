@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/Learn/Notes/Images"
+mkdir -p "$DIR"
+
+FILE="$DIR/note_$(date +'%Y-%m-%d_%H-%M-%S').png"
+
+scrot -s -o "$FILE"
+
+# copy path to clipboard
+printf "%s" "$FILE" | xclip -selection clipboard -t text/plain
