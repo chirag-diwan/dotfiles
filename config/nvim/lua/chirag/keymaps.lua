@@ -18,10 +18,28 @@ vim.keymap.set("n", "<left>", '<cmd> echo "Use h to move left"<CR>')
 vim.keymap.set("n", "<right>", '<cmd> echo "Use l to move right"<CR>')
 vim.keymap.set("n", "<up>", '<cmd> echo "Use k to move up"<CR>')
 vim.keymap.set("n", "<down>", '<cmd> echo "Use j to move down"<CR>')
-vim.keymap.set({ "n", "i", "v" }, "<C-f>", '<Esc>')
-
+vim.keymap.set({ "n", "i", "v" }, "<C-c>", '<Esc>')
+vim.keymap.set({ "n", "i", "v" }, "<Esc>", '<cmd>echo "Use ctrl c to esc"<CR>')
 vim.keymap.set({ "n", "v" }, "Y", '"+y<CR>')
 
 
 vim.keymap.set("n", "<C-j>", "^")
 vim.keymap.set("n", "<C-k>", "$")
+
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+vim.keymap.set("n", "<C-l>", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-p>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "8", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "9", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "0", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "-", function() harpoon:list():select(4) end)
+
+
+vim.keymap.set("n", "<C-f>", "<cmd>Telescope lsp_document_symbols<CR>")
+

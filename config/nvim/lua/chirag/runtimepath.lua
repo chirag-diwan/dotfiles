@@ -1,3 +1,4 @@
+vim.opt.runtimepath:append("/home/chirag/Projects/FSwitch.nvim")
 vim.opt.runtimepath:append("/home/chirag/Projects/LuaUtils")
 vim.opt.runtimepath:append("/home/chirag/Projects/betterchrome")
 vim.opt.runtimepath:append("/home/chirag/Projects/simple")

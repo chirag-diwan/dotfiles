@@ -4,7 +4,8 @@ dir=$(find ~/ \
   -maxdepth 3 \
   -path "*/node_modules" -prune -o \
   -path "*/.git" -prune -o \
-  -print | grep -E "Learn|Projects|leetcode" | fzf)
+  -path "*/.cache" -prune -o \
+  -print | grep -E "Learn|Projects|leetcode|matplot|\.config" | fzf)
 
 [ -z "$dir" ] && exit
 

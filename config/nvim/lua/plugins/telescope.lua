@@ -6,7 +6,7 @@ return {
       defaults = {
         file_ignore_patterns = { "node_modules", ".git" },
         layout_config = {
-          horizontal = { width = 0.9, height = 0.85 },
+          horizontal = { width = 0.9, height = 0.95 },
         },
         sorting_strategy = "ascending",
       },

@@ -1,6 +1,7 @@
 vim.opt.runtimepath:append('.')
 require('chirag.lazy')
 require('chirag.runtimepath')
+require('chirag.lsp')
 require('chirag.colorscheme')
 require('chirag.config')
 require('chirag.keymaps')
