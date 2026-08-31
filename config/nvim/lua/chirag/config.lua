@@ -18,23 +18,14 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local cmp = require('cmp')
-cmp.setup({
-  window = {
-    completion = cmp.config.window.bordered({
-      border = "rounded",
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-    }),
-    documentation = cmp.config.window.bordered({
-      border = "rounded",
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-    }),
-  },
-  mapping = {
-    ['<C-k>'] = cmp.mapping.confirm({ select = true }),
-  },
-})
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undofile = true -- Keeps persistent undo history without interfering
 
-vim.api.nvim_create_user_command("Search", function(opts)
-  vim.cmd('vimgrep /' .. opts.args .. '/j **/*')
-end, { nargs = 1 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "cpp" },
+  callback = function()
+    vim.opt_local.cinoptions:append("j1,(0,ws")
+  end,
+})

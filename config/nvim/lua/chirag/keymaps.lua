@@ -28,18 +28,23 @@ vim.keymap.set("n", "<C-k>", "$")
 
 local harpoon = require("harpoon")
 
--- REQUIRED
 harpoon:setup()
--- REQUIRED
 
-vim.keymap.set("n", "<C-l>", function() harpoon:list():add() end)
-vim.keymap.set("n", "<C-p>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set({"n" , "i"}, "<C-l>", function() harpoon:list():add() end)
+vim.keymap.set({"n" , "i"}, "<C-p>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set("n", "8", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "9", function() harpoon:list():select(2) end)
 vim.keymap.set("n", "0", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "-", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<C-j>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-k>", function() harpoon:list():next() end)
 
 
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope lsp_document_symbols<CR>")
 
+vim.keymap.set("n", "gra", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+  })
+end)

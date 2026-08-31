@@ -37,20 +37,6 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.config("fortls", {
-  capabilities = capabilities,
-
-  cmd = {
-    "fortls",
-    "--notify_init",
-    "--hover_signature",
-    "--hover_language=fortran",
-    "--use_signature_help",
-  },
-
-  filetypes = { "fortran" },
-})
-
 
 vim.lsp.config("clangd", {
   capabilities = vim.tbl_deep_extend(
@@ -95,7 +81,6 @@ vim.lsp.config("ts_ls", {
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "fortls",
     "pyright",
     "clangd",
     "lua_ls",

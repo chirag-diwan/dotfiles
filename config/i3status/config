@@ -12,7 +12,7 @@ time {
 }
 
 memory {
-    format = "RAM: %used"
+    format = ""
 }
 
 battery 0{

@@ -7,3 +7,4 @@ sync:
 	cp -r ~/.config/tmux/ ./config/
 	cp -r ~/.local/bin/setup ./setup
 	cp -r ~/.tmux.conf ./tmux.conf
+	cp ~/.local/bin/ssh-and ./ssh-and
